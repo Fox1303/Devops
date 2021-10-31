@@ -1,4 +1,25 @@
-# Devops
-ok
-commit 2nd
-commit 3rd
+pipeline {
+	agent any
+	tools {
+    	maven 'my_mvn'
+	}
+	stages {
+    	stage("Checkout") {   
+        	steps {               	 
+            	git url: '<YourGithubRepoURL>'          	 
+           	 
+        	}    
+    	}
+    	stage('Build') {
+        	steps {
+        	sh "mvn compile"  	 
+        	}
+    	}
+   	 
+    	stage("Unit test") {          	 
+        	steps {  	 
+            	sh "mvn test"          	 
+       	}
+}
+}
+}
